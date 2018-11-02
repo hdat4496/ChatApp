@@ -6,7 +6,9 @@ Front-end :
 - Redux
 - Antd
 - Sass
+
 Back-end :
+
 - Hapi-js
 - WebSocket
 - JWT

@@ -1,0 +1,29 @@
+.chat-footer{
+    .chat-input{
+        resize: none;
+        border-radius: 0;
+        display: inline-block;
+        width: 94%;
+        border: 0;
+        border-left: 1.2px solid #eaf1ff;
+        
+    }
+
+    // ::-webkit-input-placeholder {
+    //     color: #808080;
+    //     text-align: center;
+     
+    //  }
+}
+
+.icon-enter:active{
+    background-color:#e0e0e0;
+    cursor: pointer;
+
+}
+
+.icon-enter:hover{
+    cursor: pointer;
+}
+
+

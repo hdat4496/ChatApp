@@ -1,0 +1,72 @@
+.ant-layout-header{
+    //option1
+    // background-color: white!important;
+
+    //option2
+    // background-color: #4392F1!important;
+    border:0!important;
+    border-left: 1px solid #eaf1ff!important;
+    color: white;
+    background-image: linear-gradient(to right, #4392F1 , #4392f196)!important;
+    // ===============
+
+    .user-item{
+        .user-item-name{
+            
+            width: 250px!important;
+            .name{
+                font-size: 18px!important;
+                line-height: 17px!important;
+                width: fit-content!important;
+
+                //option2
+                // color: white!important;
+                //===============
+            }
+            .status{
+                color: #ffffffba;
+                font-size: 13px;
+            }
+        }
+        .member-group{
+            padding-right: 10px;
+            margin-top: 6px;
+            border-right: 1px solid #bdbdbd;
+            cursor: pointer;  
+            // color: white!important;
+        }
+
+        .add-member-to-group{
+            margin-left: 10px;
+            cursor: pointer;
+            // color: white!important;
+        }
+    }
+
+    
+}
+
+.ant-modal-content{
+    .ant-modal-body{
+        .ant-confirm-body{
+            .ant-confirm-content{
+                .avatar{
+                    display: inline-block;
+                    margin: 9px;
+                    width: 20%;
+                    i{
+                        margin-left: -20px;
+                    }
+                }
+                .user-item-name{
+                    width: 60%;
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: 17px;
+                    white-space: nowrap;
+                }
+            }
+
+        }
+    }
+}

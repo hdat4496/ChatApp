@@ -1,0 +1,608 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: ChapApp-Api
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+  /users/checkexisteduser:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    get:
+      description: Check existence of user
+      # used as the method name of the controller
+      operationId: checkExistedUser
+      parameters:
+        - name: username
+          in: query
+          description: username
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+
+  /users/login:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    post:
+      description: Login and get token for user
+      # used as the method name of the controller
+      operationId: login
+      parameters:
+        - name: user_info
+          in: body
+          description: User info
+          required: true
+          schema:
+            $ref: "#/definitions/UserInfo"
+
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/User"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+
+  /users/signup:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    post:
+      description: Sign up
+      # used as the method name of the controller
+      operationId: signup
+      parameters:
+        - name: user_info_signup
+          in: body
+          description: User info sign up
+          required: true
+          schema:
+            $ref: "#/definitions/UserInfoSignUp"
+
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/User"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /users/getdata:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    get:
+      description: Get data of user
+      # used as the method name of the controller
+      operationId: getdata
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/UserData"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /users/getall:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    get:
+      description: Get all user
+      # used as the method name of the controller
+      operationId: getalluser
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /users/getuser:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    get:
+      description: Get the user's friend list
+      # used as the method name of the controller
+      operationId: getusercon
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /users/setstatus:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    post:
+      description: Set status for user
+      # used as the method name of the controller
+      operationId: setstatus
+      parameters:
+        - name: userStatus
+          in: body
+          description: Status
+          required: true
+          schema:
+            $ref: "#/definitions/UserStatus"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /con/create:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: conversations
+    post:
+      description: Create conversations
+      # used as the method name of the controller
+      operationId: createconversation
+      parameters:
+        - name: objconversations
+          in: body
+          description: Conversations
+          required: true
+          schema:
+            $ref: "#/definitions/CongroupInfoAndToken"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /group/create:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: group
+    post:
+      description: Create group
+      # used as the method name of the controller
+      operationId: creategroup
+      parameters:
+        - name: objgroup
+          in: body
+          description: Group
+          required: true
+          schema:
+            $ref: "#/definitions/CongroupInfoAndToken"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /message/getlist:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: messages
+    get:
+      description: Get list message of group or conversation
+      # used as the method name of the controller
+      operationId: getlistmessage
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+        - name: id
+          in: query
+          description: Id
+          required: true
+          type: number
+        - name: type
+          in: query
+          description: Conversation or
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ListMessage"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /user/getstatus:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    get:
+      description: Get status of user
+      # used as the method name of the controller
+      operationId: getstatus
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+        - name: username
+          in: query
+          description: username
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /con/getlastedid:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: conversations
+    get:
+      description: Get lastedid conversation
+      # used as the method name of the controller
+      operationId: getlastedcon
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /group/getlastedid:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: group
+    get:
+      description: Get lastid group
+      # used as the method name of the controller
+      operationId: getlastedgroup
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /message/getlastedmsg:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: messages
+    get:
+      description: Get lasted message of group or conversation
+      # used as the method name of the controller
+      operationId: getlastedmsg
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+        - name: id
+          in: query
+          description: id
+          required: true
+          type: number
+        - name: type
+          in: query
+          description: type
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/ResponseString"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /group/addmember:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: group
+    post:
+      description: Add new member to group
+      # used as the method name of the controller
+      operationId: addmember
+      parameters:
+        - name: obj
+          in: body
+          description: User info
+          required: true
+          schema:
+            $ref: "#/definitions/AddMemberGroup"
+
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /message/send:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: messages
+    post:
+      description: Send message
+      # used as the method name of the controller
+      operationId: sendmessage
+      parameters:
+        - name: objmessage
+          in: body
+          description: User info
+          required: true
+          schema:
+            $ref: "#/definitions/SendMessage"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        "400":
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /message/updateunread:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: messages
+    get:
+      description: Update unread
+      # used as the method name of the controller
+      operationId: updateunread
+      parameters:
+        - name: token
+          in: query
+          description: Token
+          required: true
+          type: string
+        - name: id
+          in: query
+          description: ID
+          required: true
+          type: number
+        - name: type
+          in: query
+          description: Type
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+  /test:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: users
+    get:
+      description: Get existence of user
+      # used as the method name of the controller
+      operationId: test
+      parameters:
+        - name: user
+          in: query
+          description: Token
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Response"
+# complex objects have schema definitions
+definitions:
+  User:
+    properties:
+      status:
+        type: integer
+      user:
+        type: string
+      expire:
+        type: number
+      token:
+        type: string
+  Response:
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+  UserInfo:
+    properties:
+      username:
+        type: string
+      password:
+        type: string  
+  UserInfoSignUp:
+    properties:
+      username:
+        type: string
+      password:
+        type: string  
+  ChatItem:
+    properties:
+      id:
+        type: number
+      username:
+        type: string
+      content:
+        type: string
+      time:
+        type: number  
+  CongroupInfo:
+    properties:
+      conId:
+        type: number
+      username:
+        type: string
+      groupId:
+        type: number
+      groupname:
+        type: string 
+      unread:
+        type: integer
+      createUser:
+        type: boolean
+      lastedmsg:
+        type: object
+        $ref: "#/definitions/ChatItem"
+  UserData:
+    properties:
+      status:
+        type: integer
+      user:
+        type: string
+      userStatus:
+        type: string
+      listConGroup:
+        type: array
+        items:
+          $ref: "#/definitions/CongroupInfo"
+  ResponseString:
+    properties:
+      status:
+        type: integer
+      value:
+        type: string
+  UserStatus:
+    properties:
+      status:
+        type: string
+      token:
+        type: string 
+  CongroupInfoAndToken:
+    properties:
+      conobj:
+        type: object
+        $ref: "#/definitions/CongroupInfo"
+      token:
+        type: string
+  ListMessage:
+    properties:
+      status:
+        type: number
+      listmessage:
+        type: array
+        items:
+          $ref: "#/definitions/ChatItem"
+  AddMemberGroup:
+    properties:
+      groupId:
+        type: number
+      member:
+        type: string  
+      token:
+        type: string  
+  SendMessage:
+    properties:
+      id:
+        type: number
+      token:
+        type: string  
+      type:
+        type: string  
+      content:
+        type: string  

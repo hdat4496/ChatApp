@@ -1,0 +1,41 @@
+.menu-add{
+    border-bottom: 1.2px solid #eaf1ff;
+    .add-new{
+
+        .add-new-icon{
+            display:inline-block;
+            margin:10px 2px 10px 10px;
+            #add-new-icon{
+                font-size: 30px;
+                margin-left: 10px;
+                margin-top: 5px;
+            }
+        }
+
+        .name{
+            display:inline-block;
+            margin:10px;
+            // padding-bottom: 10px;
+            span{
+                margin-bottom: 10px;
+            }
+
+        }
+
+
+        .add-new-group-icon{
+            display:inline-block;
+            margin:10px 2px 10px 10px;
+            #add-new-group-icon{
+                font-size: 30px;
+                margin-left: 10px;
+                margin-top: 5px;
+            }
+        }
+
+        .name{
+            display:inline-block;
+            // margin:10px;
+        }
+    
+}}

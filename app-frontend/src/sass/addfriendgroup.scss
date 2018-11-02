@@ -1,0 +1,48 @@
+.ant-modal-content{
+    .ant-modal-body{
+        #group-name{
+            max-width: 300px;
+            width: 85%;
+            margin-bottom: 8px;
+        }
+        #member-name{
+            max-width: 300px;
+            width: 85%;
+            margin-bottom: 8px;
+        }
+        .anticon {
+            font-size: 25px;
+            vertical-align: middle;
+            margin-left: 10px;
+            display: inline-block;
+            width: 10%;  
+        }
+        .text-list-member{
+            margin: 5px 0;
+            font-style: italic;
+        }
+    }
+}
+.add-friend:hover, .add-group:hover {
+    color: #1890ff!important;
+    cursor: pointer!important;
+}
+
+#icon-add-member:hover{
+    cursor: pointer!important;
+    color: #000;
+}
+
+
+.ant-select-selection__rendered{
+    .ant-select-selection__choice{
+        background-color: #DC493A!important;
+        border-radius: 5px!important;
+        color: white!important;
+        svg{
+            font-size: 15px!important;
+            vertical-align: super!important;
+            color: white!important;
+        }
+    }
+}

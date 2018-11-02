@@ -1,0 +1,26 @@
+.main-form{
+    max-height: 100vh;
+    overflow: hidden;
+    .chat-form{
+        overflow: hidden;
+        .ant-layout-header{ 
+            line-height: 0;
+            background: #fff;
+            padding: 0;
+            border: 1.2px solid #eaf1ff;
+        }
+
+        .ant-layout-content{
+            height: 100vh;
+            overflow-y: auto;
+            background: #fff;
+            border: 1.2px solid #eaf1ff;
+            border-top:none;
+        }
+
+        .ant-layout-footer{
+            padding: 0;
+            position: relative;
+        }
+    }
+}

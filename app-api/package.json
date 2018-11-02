@@ -1,0 +1,27 @@
+{
+  "name": "app-api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "express-async-handler": "^1.1.4",
+    "hapi": "^10.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "level-rocksdb": "^3.0.1",
+    "sha256": "^0.2.0",
+    "swagger-hapi": "^0.1.0",
+    "websocket": "^1.0.28"
+  },
+  "devDependencies": {
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "swagger project test"
+  }
+}

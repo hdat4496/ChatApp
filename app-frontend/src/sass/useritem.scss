@@ -1,0 +1,40 @@
+.user-item{
+    .count-new-msg{
+        display: inline-block;
+        float: right;
+        margin: 14px 7px;
+        padding-right: 0px;
+    }
+
+    .user-item-name{
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 17px;
+        white-space: nowrap; 
+        width: 160px; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        
+        .lastmsg{
+            color: #bdbdbd;
+            font-style: italic;
+        }
+
+        .status{
+            color: #dddfe2;
+            font-style: italic;
+        }
+
+    }
+
+    .avatar{
+        span{
+            i{
+                font-size: 22.5px;
+                margin-right: 0px;
+            }
+        }
+
+
+    }
+}

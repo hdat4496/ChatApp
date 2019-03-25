@@ -8,6 +8,7 @@
 ##### h5 Heading
 ###### h6 Heading
 
+![Apple Wwdc 2018 Developers Dice](/uploads/apple-wwdc-2018-developers-dice.jpg "Apple Wwdc 2018 Developers Dice")
 
 ## Horizontal Rules
 
